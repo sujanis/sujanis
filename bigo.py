@@ -40,7 +40,7 @@ def length_of_longest_substring_n2(s):
             if freq[char_index] > 1:
                 break
             max_length = max(max_length, j - i + 1)
-    return max_length   
+    return max_length
 def length_of_longest_substring_n(s):
     """Finds the length of the longest substring without repeating characters."""
     max_length = 0

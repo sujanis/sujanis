@@ -27,9 +27,6 @@ def length_of_longest_substring_n3(s: any) -> int:
                 max_length = max(max_length, len(substring))
     return max_length
 
-    
-
-
 def length_of_longest_substring_n2(s: any) -> int:
     max_length = 0
     n = len(s)
@@ -41,9 +38,7 @@ def length_of_longest_substring_n2(s: any) -> int:
             if freq[char_index] > 1:
                 break
             max_length = max(max_length, j - i + 1)
-    return max_length
-    
-
+    return max_length   
 
 def length_of_longest_substring_n(s: any) -> int:
     max_length = 0

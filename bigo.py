@@ -17,21 +17,19 @@ UT EID 2: mp52744
 """
 
 
-# TODO: implement this function. You may delete this comment when you are done.
 def length_of_longest_substring_n3(s):
-   max_length = 0
-   n = len(s)
-   for i in range(n):
-      for j in range(i, n):
-         substring = s[i:j+1]
-         if len(set(substring)) == len(substring):
-            max_length = max(max_length, len(substring))
-   return max_length
+    max_length = 0
+    n = len(s)
+    for i in range(n):
+        for j in range(i, n):
+            substring = s[i:j+1]
+            if len(set(substring)) == len(substring):
+                max_length = max(max_length, len(substring))
+    return max_length
 
     
 
 
-# TODO: implement this function. You may delete this comment when you are done.
 def length_of_longest_substring_n2(s):
     max_length = 0
     n = len(s)
@@ -47,7 +45,6 @@ def length_of_longest_substring_n2(s):
     
 
 
-# TODO: implement this function. You may delete this comment when you are done.
 def length_of_longest_substring_n(s):
     max_length = 0
     n = len(s)

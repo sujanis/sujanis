@@ -17,7 +17,7 @@ UT EID 2: mp52744
 """
 
 
-def length_of_longest_substring_n3(s):
+def length_of_longest_substring_n3(s: any) -> int:
     max_length = 0
     n = len(s)
     for i in range(n):
@@ -30,7 +30,7 @@ def length_of_longest_substring_n3(s):
     
 
 
-def length_of_longest_substring_n2(s):
+def length_of_longest_substring_n2(s: any) -> int:
     max_length = 0
     n = len(s)
     for i in range(n):
@@ -45,7 +45,7 @@ def length_of_longest_substring_n2(s):
     
 
 
-def length_of_longest_substring_n(s):
+def length_of_longest_substring_n(s: any) -> int:
     max_length = 0
     n = len(s)
     start = 0

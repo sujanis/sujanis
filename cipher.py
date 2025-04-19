@@ -89,7 +89,11 @@ def filter_string(string):
         removes all digits, punctuation marks, and spaces. It
         returns a single string with only lower case characters
     """
-    return ''.join([c for c in string.lower() if c.isalpha()])
+    filtered_chars = []
+    for character in string.lower():
+        if character.isaplha():
+            filtered_chars.append(character)
+    return ''.join(filtered_chars)
 
 
 # TODO: implement this function. You may delete this comment after you are done.
@@ -123,8 +127,10 @@ def vigenere_encode(string, phrase):
     """
     filtered = filter_string(string)
     encoded = ''
-    for i, c in enumerate(filtered):
-        encoded += encode_character(phrase[i % len(phrase)], c)
+    for i in range(len(filtered)):
+        c = filtered[i]
+        p = phrase[i % len(phrase)]
+        encoded += encode_character(p, c)
     return encoded
 
 
@@ -136,8 +142,10 @@ def vigenere_decode(string, phrase):
         Vigenere algorithm
     """
     decoded = ''
-    for i, c in enumerate(string):
-        decoded += decode_character(phrase[i % len(phrase)], c)
+    for i in range(len(string)):
+        c = string[i]
+        p = phrase[i % len(phrase)]
+        decoded += decode_character(p, c)
     return decoded
 
 

@@ -26,8 +26,13 @@ def rail_fence_encode(string, key):
     post: returns a single string that is encoded with
         rail fence algorithm
     """
-    fence = [['' for _ in range(len(string))] for _ in range(key)]
-    row, step = 0, 1
+    fence = []
+    for row_index in range(key):
+        row = []
+        for col_index in range(len(string)):
+            row.append('')
+        fence.append(row)
+
 
     for i, char in enumerate(string):
         fence[row][i] = char
@@ -37,8 +42,11 @@ def rail_fence_encode(string, key):
             step = -1
         row += step
 
-    result = ''.join([''.join(r) for r in fence])
-    return result 
+    result = ''
+    for row in fence:
+        for char in row:
+            result += char
+    return result
 
 
 # TODO: implement this function. You may delete this comment after you are done.
@@ -50,8 +58,13 @@ def rail_fence_decode(string, key):
     post: function returns a single string that is decoded with
         rail fence algorithm
     """
-    fence = [['' for _ in range(len(string))] for _ in range(key)]
-    row, step = 0, 1
+    fence = []
+    for row_index in range(key):
+        row = []
+        for col_index in range(len(string)):
+            row.append('')
+        fence.append(row)
+
     for i in range(len(string)):
         fence[row][i] = '*'
         if row == 0:

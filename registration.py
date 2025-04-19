@@ -460,7 +460,7 @@ def main():
     lines = sys.stdin.red().splitlines()
     num_vertices = int(lines[0])
     for i in range(1, num_vertices + 1):
-        graph.add_verte(lines[i])
+        graph.add_vertex(lines[i])
     num_edges = int(lines[num_vertices +1])
     for i in range(num_vertices + 2, num_vertices + 2 + num_edges):
         start_label, end_label = lines[i].split()

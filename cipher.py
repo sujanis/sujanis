@@ -117,7 +117,11 @@ def encode_character(p, s):
     post: function returns a single character encoded using the
         Vigenere algorithm. You may not use a 2-D list
     """
-    return chr((ord(p) + ord(s) - 2 * ord('a')) % 26 + ord('a'))
+    p_val = ord(p) - ord('a')
+    s_val = ord(s) - ord('a')
+    encoded_val = (p_val + s_val) % 26
+    encoded_char = chr(encoded_val + ord('a'))
+    return encoded_char
 
 
 # TODO: implement this function. You may delete this comment after you are done.
@@ -128,7 +132,11 @@ def decode_character(p, s):
     post: function returns a single character decoded using the
         Vigenere algorithm. You may not use a 2-D list
     """
-    return chr((ord(s) - ord(p) + 26) % 26 +ord('a'))
+    p_val = ord(p) - ord('a')
+    s_val = ord(s) - ord('a')
+    decoded_val = (s_val - p_val + 26) % 26
+    decoded_char = chr(decoded_val + ord('a'))
+    return decoded_char
 
 
 # TODO: implement this function. You may delete this comment after you are done.

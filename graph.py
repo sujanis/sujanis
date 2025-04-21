@@ -346,12 +346,13 @@ class ImageGraph:
         queue.enqueue(start_index)
 
         while not queue.is_empty():
-            current_idx = queue.dequeue
+            current_idx = (queue.dequeue)
             current_vertex = self.vertices[current_idx]
             if not current_vertex.visited and current_vertex.color == original_color:
                 current_vertex.visit_and_set_color(color)
                 for neighbor in current_vertex.edges:
-                    if not self.vertices[neighbor].visited:
+                    neighbor_vertex = self.vertices[neighbor]
+                    if not neighbor_vertex.visited and neighbor_vertex.color == original_color:
                         queue.enqueue(neighbor)
 
 
@@ -395,7 +396,8 @@ class ImageGraph:
             if not current_vertex.visited and current_vertex.color == original_color:
                 current_vertex.visit_and_set_color(color)
                 for neighbor in reversed(current_vertex.edges):
-                    if not self.vertices[neighbor].visited:
+                    neighbor_vertex = self.vertices[neighbor]
+                    if not neighbor_vertex.visited and neighbor_vertex.color == original_color:
                         stack.push(neighbor)
         
 
@@ -444,7 +446,7 @@ def create_graph(data):
     idx += 1
 
     for i in range(num_edges):
-        u, v = map(int, lines[idx + i].split('.'))
+        u, v = map(int, lines[idx + i].split(','))
         graph.vertices[u].add_edge(v)
         graph.vertices[v].add_edge(u)
     idx += num_edges
@@ -476,7 +478,7 @@ def main():
     graph, start_index, color = create_graph(data)
 
     print("Adjacency Matrix:")
-    matrix = graph.create_adjacenecy_matrix()
+    matrix = graph.create_adjacency_matrix()
     for row in matrix:
         print(row)
 

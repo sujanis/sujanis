@@ -299,7 +299,6 @@ class ImageGraph:
 
     # Create the adjacency matrix.
     # Return the matrix at the end
-    # TODO: Modify this method. You may delete this comment when you are done.
     def create_adjacency_matrix(self):
         """
         Creates and returns the adjacency matrix for the graph.
@@ -312,7 +311,6 @@ class ImageGraph:
             for neighbor in vertex.edges:
                 matrix[vertex.index][neighbor] = 1
         return matrix 
-    # TODO: Modify this method. You may delete this comment when you are done.
     def bfs(self, start_index, color):
         """
         You must implement this algorithm using a Queue.
@@ -357,7 +355,6 @@ class ImageGraph:
                         queue.enqueue(neighbor)
 
 
-    # TODO: Modify this method. You may delete this comment when you are done.
     def dfs(self, start_index, color):
         """
         You must implement this algorithm using a Stack WITHOUT using recursion.
@@ -387,10 +384,22 @@ class ImageGraph:
         self.print_image()
 
         self.reset_visited()
+        stack = Stack()
+        start_vertex = self.vertices[start_index]
+        original_color = start_vertex.color
+        stack.push(start_index)
+
+        while not stack.is_empty():
+            current_idx = stack.pop()
+            current_vertex = self.vertices[current_idx]
+            if not current_vertex.visited and current_vertex.color == original_color:
+                current_vertex.visit_and_set_color(color)
+                for neighbor in reversed(current_vertex.edges):
+                    if not self.vertices[neighbor].visited:
+                        stack.push(neighbor)
         
 
 
-# TODO: Modify this function. You may delete this comment when you are done.
 def create_graph(data):
     """
     Creates a Graph object from the given input data and parses the starting
@@ -416,7 +425,32 @@ def create_graph(data):
     # read search starting position and color
 
     # return the ImageGraph, starting position, and color as a tuple in this order.
-    raise NotImplementedError("Remove this exception and implement create_graph here.")
+    lines = data.strip().splitlines()
+    idx = 0
+
+    image_size = int(lines[idx])
+    idx+= 1
+    num_vertices = int(lines[idx])
+    idx += 1
+
+    graph = ImageGraph(image_size)
+
+    for i in range(num_vertices):
+        x, y, color = lines[idx + i].split(',')
+        graph.vertices.append(ColoredVertex(i, int(x), int(y), color.strip()))
+    idx += num_vertices
+
+    num_edges = int(lines[idx])
+    idx += 1
+
+    for i in range(num_edges):
+        u, v = map(int, lines[idx + i].split('.'))
+        graph.vertices[u].add_edge(v)
+        graph.vertices[v].add_edge(u)
+    idx += num_edges
+
+    start_idx, fill_color = lines[idx].split(',')
+    return graph, int(start_idx), fill_color.strip()
 
 
 # TODO: Modify this function. You may delete this comment when you are done.
@@ -429,8 +463,6 @@ def main():
     """
 
     # read all input as a single string.
-    data = sys.stdin.read()
-
     # create graph, passing in data
 
     # print adjacency matrix in a readable format (maybe row by row)
@@ -440,6 +472,20 @@ def main():
     # reset by creating graph again
 
     # run dfs
+    data = sys.stdin.read()
+    graph, start_index, color = create_graph(data)
+
+    print("Adjacency Matrix:")
+    matrix = graph.create_adjacenecy_matrix()
+    for row in matrix:
+        print(row)
+
+    print("\nBFS Bucket Fill:")
+    graph.bfs(start_index, color)
+
+    print("\nDFS Bucket Fill:")
+    graph, start_index, color = create_graph(data)
+    graph.dfs(start_index, color)
 
 
 if __name__ == "__main__":

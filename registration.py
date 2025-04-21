@@ -363,7 +363,6 @@ class Graph:
         return vertices
 
 
-    # TODO: Modify this method. You may delete this comment when you are done.
     def compute_depth(self):
         """Computes depth for each vertex in the graph."""
         memo = {}
@@ -384,7 +383,6 @@ class Graph:
 
 
 
-    # TODO: Modify this method. You may delete this comment when you are done.
     def has_cycle(self):
         """
         Determine whether or not the graph has a cycle.
@@ -414,7 +412,6 @@ class Graph:
     
 
 
-    # TODO: Modify this method. You may delete this comment when you are done.
     def get_registration_plan(self):
         """
         Return a valid ordering of courses to take for registration as a 2D
@@ -449,7 +446,6 @@ class Graph:
         return courses
 
 
-# TODO: Modify this function. You may delete this comment when you are done.
 def main():
     """
     The main function to retrieve a registration plan.

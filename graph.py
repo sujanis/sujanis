@@ -339,13 +339,14 @@ class ImageGraph:
         print("Starting BFS; initial state:")
         self.print_image()
 
+        self.reset_visited()
         queue = Queue()
         start_vertex = self.vertices[start_index]
         original_color = start_vertex.color
         queue.enqueue(start_index)
 
         while not queue.is_empty():
-            current_idx = queue.dequeue()
+            current_idx = (queue.dequeue)
             current_vertex = self.vertices[current_idx]
             if not current_vertex.visited and current_vertex.color == original_color:
                 current_vertex.visit_and_set_color(color)

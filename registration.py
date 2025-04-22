@@ -365,6 +365,8 @@ class Graph:
 
     def compute_depth(self):
         """Computes depth for each vertex in the graph."""
+        if self.has_cycle():
+            return
         memo = {}
         def dfs(v_idx):
             if v_idx in memo:
@@ -377,7 +379,8 @@ class Graph:
             self.vertices[v_idx].depth = max_depth
             return max_depth 
         for i in range(len(self.vertices)):
-            dfs(i)
+            if i not in memo:
+                dfs(i)
 
 
 
@@ -388,24 +391,22 @@ class Graph:
 
         post: returns True if there is a cycle and False otherwise.
         """
-        visited = [False] * len(self.vertices)
-        rec_stack = [False] * len(self.vertices)
+        colors = [0] * len(self.vertices)
 
-        def dfs(v_idx):
-            visited[v_idx] = True
-            rec_stack[v_idx] = True
-            for neighbor in self.get_adjacent_vertices(v_idx):
-                if not visited[neighbor]:
-                    if dfs(neighbor):
+        def dfs_cycle(vertex):
+            colors[vertex] = 1
+            for neighbor in self.get_adjacent_vertices(vertex):
+                if colors[neighbor] == 0
+                    if dfs_cycle(neighbor):
                         return True
-                    elif rec_stack[neighbor]:
+                    elif colors[neighbor] == 1:
                         return True
-            rec_stack[v_idx] = False
+            colors[vertex] = 2
             return False
-        
+      
         for i in range(len(self.vertices)):
-            if not visited[i]:
-                if dfs(i):
+            if colors[i] == 0:
+                if dfs_cycle(i):
                     return True
         return False 
 

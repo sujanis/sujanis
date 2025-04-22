@@ -68,21 +68,22 @@ class Node:
         """
         self.data = data
         self.next = next
+    def get_data(self):
+        return self.data
+    def get_next(self):
+        return self.next
 
 
 class StackError(Exception):
-    pass
 
-
-class Stack:
-    """
+    class Stack:
+        """
     A class that implements a stack using a singly linked list.
     
     Instance Variables:
         _top: The top node of the stack.
         _size: The number of elements in the stack.
     """
-    
     def __init__(self):
         """
         Initializes an empty stack with no elements.
@@ -153,7 +154,6 @@ class Stack:
 
 
 class QueueError(Exception):
-    pass
 
 
 class Queue:
@@ -398,8 +398,6 @@ class ImageGraph:
                     neighbor_vertex = self.vertices[neighbor]
                     if not neighbor_vertex.visited and neighbor_vertex.color == original_color:
                         stack.push(neighbor)
-        
-
 
 def create_graph(data):
     """
@@ -454,7 +452,6 @@ def create_graph(data):
     return graph, int(start_idx), fill_color.strip()
 
 
-# TODO: Modify this function. You may delete this comment when you are done.
 def main():
     """
     The main function that drives the program execution.

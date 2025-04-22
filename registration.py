@@ -379,7 +379,8 @@ class Graph:
             self.vertices[v_idx].depth = max_depth
             return max_depth 
         for i in range(len(self.vertices)):
-            dfs(i)
+            if i not in memo:
+                dfs(i)
 
 
 
@@ -390,8 +391,9 @@ class Graph:
 
         post: returns True if there is a cycle and False otherwise.
         """
-        visited = [False] * len(self.vertices)
-        rec_stack = [False] * len(self.vertices)
+        num_vertices = len(self.vertices)
+        visited = [False] * num_vertices
+        rec_stack = [False] * num_vertices
 
         def dfs(v_idx):
             visited[v_idx] = True
@@ -405,7 +407,7 @@ class Graph:
             rec_stack[v_idx] = False
             return False
         
-        for i in range(len(self.vertices)):
+        for i in range(num_vertices):
             if not visited[i]:
                 if dfs(i):
                     return True

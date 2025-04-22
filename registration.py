@@ -21,7 +21,6 @@ import sys
 
 
 class HeapError(Exception):
-    pass
     """
     Custom exception class for heap errors.
     """
@@ -162,7 +161,6 @@ class Node:
 
 
 class StackError(Exception):
-    pass
     """
     Custom exception class for stack errors.
     """
@@ -377,7 +375,7 @@ class Graph:
                 max_depth = max(max_depth, depth)
             memo[v_idx] = max_depth
             self.vertices[v_idx].depth = max_depth
-            return max_depth 
+            return max_depth
         for i in range(len(self.vertices)):
             if i not in memo:
                 dfs(i)
@@ -406,13 +404,11 @@ class Graph:
                     return True
             rec_stack[v_idx] = False
             return False
-        
         for i in range(num_vertices):
             if not visited[i]:
                 if dfs(i):
                     return True
-        return False 
-
+        return False
 
     def get_registration_plan(self):
         """
@@ -431,9 +427,9 @@ class Graph:
         taken = set()
         while len(taken) < len(self.vertices):
             available = []
-            for i in range(len(self.vertices)):
+            for i, vertex in enumerate(self.vertices):
                 if in_degree[i] == 0 and i not in taken:
-                    available.append((self.vertices[i].depth, self.vertices[i].label, i))
+                    available.append((vertex.depth, vertex.label, i))
             available.sort(reverse=True)
             semester = []
             for _, label, idx in available[:4]:

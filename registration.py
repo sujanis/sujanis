@@ -379,7 +379,7 @@ class Graph:
             self.vertices[v_idx].depth = max_depth
             return max_depth 
         for i in range(len(self.vertices)):
-            if i not in memo:
+            if self.vertices[i].depth == -1:
                 dfs(i)
 
 

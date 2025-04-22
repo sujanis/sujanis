@@ -81,7 +81,7 @@ class Stack:
     Instance Variables:
         _top: The top node of the stack.
         _size: The number of elements in the stack.
-    """  
+    """
     def __init__(self):
         """
         Initializes an empty stack with no elements.

@@ -81,7 +81,7 @@ class Stack:
     Instance Variables:
         _top: The top node of the stack.
         _size: The number of elements in the stack.
-    """    
+    """  
     def __init__(self):
         """
         Initializes an empty stack with no elements.
@@ -309,7 +309,7 @@ class ImageGraph:
         for vertex in self.vertices:
             for neighbor in vertex.edges:
                 matrix[vertex.index][neighbor] = 1
-        return matrix 
+        return matrix
     def bfs(self, start_index, color):
         """
         You must implement this algorithm using a Queue.

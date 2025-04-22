@@ -71,9 +71,11 @@ class Node:
 
 
 class StackError(Exception):
+    pass
 
-    class Stack:
-        """
+
+class Stack:
+    """
     A class that implements a stack using a singly linked list.
     
     Instance Variables:
@@ -150,6 +152,7 @@ class StackError(Exception):
 
 
 class QueueError(Exception):
+    pass
 
 
 class Queue:
@@ -446,6 +449,7 @@ def create_graph(data):
 
     start_idx, fill_color = lines[idx].split(',')
     return graph, int(start_idx), fill_color.strip()
+
 
 
 def main():

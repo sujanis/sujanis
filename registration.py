@@ -389,23 +389,24 @@ class Graph:
 
         post: returns True if there is a cycle and False otherwise.
         """
-        def dfs(v_idx, visited, rec_stack):
+        visited = [False] * len(self.vertices)
+        rec_stack = [False] * len(self.vertices)
+
+        def dfs(v_idx):
             visited[v_idx] = True
             rec_stack[v_idx] = True
             for neighbor in self.get_adjacent_vertices(v_idx):
                 if not visited[neighbor]:
-                    if dfs(neighbor, visited, rec_stack):
+                    if dfs(neighbor):
                         return True
                     elif rec_stack[neighbor]:
                         return True
             rec_stack[v_idx] = False
             return False
         
-        visited = [False] *len(self.vertices)
-        rec_stack = [False] * len(self.vertices)
         for i in range(len(self.vertices)):
             if not visited[i]:
-                if dfs(i, visited, rec_stack):
+                if dfs(i):
                     return True
         return False
     
@@ -434,9 +435,9 @@ class Graph:
                     available.append((self.vertices[i].depth, self.vertices[i].label, i))
             available.sort(reverse=True)
             semester = []
-            for _, _, idx in available[:4]:
+            for _, label, idx in available[:4]:
                 taken.add(idx)
-                semester.append(self.vertices[idx].label)
+                semester.append(label)
                 for neighbor in self.get_adjacent_vertices(idx):
                     in_degree[neighbor] -= 1
 
@@ -453,7 +454,7 @@ def main():
     """
 
     graph = Graph()
-    lines = sys.stdin.red().splitlines()
+    lines = sys.stdin.read().splitlines()
     num_vertices = int(lines[0])
     for i in range(1, num_vertices + 1):
         graph.add_vertex(lines[i])

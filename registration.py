@@ -379,7 +379,7 @@ class Graph:
             self.vertices[v_idx].depth = max_depth
             return max_depth 
         for i in range(len(self.vertices)):
-            if self.vertices[i].depth == -1:
+            if i not in memo:
                 dfs(i)
 
 
@@ -402,8 +402,8 @@ class Graph:
                 if not visited[neighbor]:
                     if dfs(neighbor):
                         return True
-                    elif rec_stack[neighbor]:
-                        return True
+                elif rec_stack[neighbor]:
+                    return True
             rec_stack[v_idx] = False
             return False
         

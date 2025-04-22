@@ -375,8 +375,7 @@ class Graph:
                 max_depth = max(max_depth, depth)
             memo[v_idx] = max_depth
             self.vertices[v_idx].depth = max_depth
-            return max_depth
-        
+            return max_depth 
         for i in range(len(self.vertices)):
             dfs(i)
 
@@ -408,9 +407,7 @@ class Graph:
             if not visited[i]:
                 if dfs(i):
                     return True
-        return False
-    
-    
+        return False 
 
 
     def get_registration_plan(self):
